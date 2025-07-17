@@ -188,4 +188,4 @@ cython_debug/
 .cursorindexingignore
 
 # for all the data files
-.json
+data/
