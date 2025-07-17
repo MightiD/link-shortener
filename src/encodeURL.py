@@ -24,5 +24,5 @@ def encodeUrl(url):
         url = url[url.find("://"):][3:]
     
     sha = hashlib.sha1(url.encode()).hexdigest()
-    # storeUrl(url, sha)
+    storeUrl(url, sha)
     return sha
