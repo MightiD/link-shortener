@@ -4,7 +4,7 @@ from fetchURL import fetchUrl
 
 app = Flask(__name__)
 
-SERVER_URL = "192.168.100.100:5000"
+SERVER_URL = "192.168.100.100:8080"
 
 @app.route("/hello-world")
 def helloWorld():
@@ -30,7 +30,7 @@ def rootPage():
     return render_template("index.html")
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host='0.0.0.0', port=8080)
 
 #TODO: make a good user interface, should allow text input which fetches from the encode url
 #TODO: dockerise
