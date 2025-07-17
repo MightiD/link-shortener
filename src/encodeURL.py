@@ -18,12 +18,10 @@ def storeUrl(url, shortened):
         json.dump(jsonData, file, indent=4)
 
 def encodeUrl(url):
-    # if url starts with any of the url schemes
+    #if contains a url scheme
     if url.startswith(tuple(urlSchemes)):
-        # removes only first instance of that url scheme being found
-        url.replace(tuple(urlSchemes), "", 1)
-    
-    print(url)
+        # removes every character up to the ://, then removes the ://
+        url = url[url.find("://"):][3:]
     
     sha = hashlib.sha1(url.encode()).hexdigest()
     # storeUrl(url, sha)
