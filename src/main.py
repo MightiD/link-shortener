@@ -29,3 +29,11 @@ def rootPage():
 
 if __name__ == '__main__':
     app.run()
+
+#TODO: make sure no duplicate links in links.json
+#TODO: when redirecting, either remove the http from all links before encoding, or account for links already having it there
+#TODO: make a good user interface, should allow text input which fetches from the encode url
+#TODO: dockerise
+#TODO: remove hard coded urls and values (server url, json path)
+#TODO: in UI allow seeing which links have been stored, and allow deletion of links
+#TODO: if deploying on vps one day, create accounts feature
