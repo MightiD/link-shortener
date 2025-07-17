@@ -4,7 +4,9 @@ from fetchURL import fetchUrl
 
 app = Flask(__name__)
 
-SERVER_URL = "192.168.100.100:8080"
+def getServerUrl():
+    with open('../data/serverAddress.txt') as f: s = f.read()
+    return s
 
 @app.route("/hello-world")
 def helloWorld():
@@ -14,7 +16,7 @@ def helloWorld():
 def encode():
     #?url={insert url here}
     url = request.args.get("url")
-    return(f"{SERVER_URL}/{encodeUrl(url)}")
+    return(f"{serverAdd}/{encodeUrl(url)}")
 
 @app.route("/<string:url>")
 def fetch(url):    
@@ -30,9 +32,10 @@ def rootPage():
     return render_template("index.html")
 
 if __name__ == '__main__':
+    serverAdd = getServerUrl()
+    print(serverAdd)
     app.run(host='0.0.0.0', port=8080)
 
-#TODO: make a good user interface, should allow text input which fetches from the encode url
 #TODO: dockerise
 #TODO: remove hard coded urls and values (server url, json path)
 #TODO: in UI allow seeing which links have been stored, and allow deletion of links
