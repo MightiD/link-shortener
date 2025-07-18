@@ -9,8 +9,6 @@ To use it:
     in it, create a file called "serverAddress.txt"
     in that file, put the addess of the server running it
     for example, 192.168.100.100:8080
-    also you have to change the hard coded value in the src/static/index.js file
-    if you want to change the port you have to do so in the main.py file and the js file
 
     then run python3 src/main.py
 
