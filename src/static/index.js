@@ -6,11 +6,15 @@ document.addEventListener("DOMContentLoaded", function() {
         const urlInput = document.getElementById("Url").value.trim();
 
         if (urlInput != "") {
-            fetch(`http://127.0.0.1:8080/api/v1/encode?url=${urlInput}`)
+            fetch(`/api/v1/encode?url=${urlInput}`)
             .then(response => response.text())
             .then(data => {
                 console.log(data);
                 display = document.getElementById("shortenedUrl").innerText = data
+
+                navigator.clipboard.writeText(data).then(() => {
+                    alert("Text URL to clipboard!");
+                });
             })
         }
     })
