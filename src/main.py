@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 def getServerUrl():
     with open('../data/serverAddress.txt') as f: s = f.read()
-    return s
+    return s.strip()
 
 @app.route("/hello-world")
 def helloWorld():
@@ -16,6 +16,7 @@ def helloWorld():
 def encode():
     #?url={insert url here}
     url = request.args.get("url")
+    serverAdd = getServerUrl()
     return(f"{serverAdd}/{encodeUrl(url)}")
 
 @app.route("/<string:url>")
@@ -28,13 +29,21 @@ def fetch(url):
         return redirect(f"http://{fetchUrl(url)}")
 
 @app.route("/")
-def rootPage():
+def index():
     return render_template("index.html")
 
-if __name__ == '__main__':
+def main():
     serverAdd = getServerUrl()
-    print(serverAdd)
-    app.run(host='0.0.0.0', port=8080)
+    if len(serverAdd) == 0:
+        print("NO SERVER ADDRESS PROVIDED")
+        return 1
+    
+    port = serverAdd[serverAdd.find(":"):][1:]
+
+    app.run(host='0.0.0.0', port=port)
+
+if __name__ == '__main__':
+    main()
 
 #TODO: dockerise
 #TODO: remove hard coded urls and values (server url, json path)
