@@ -189,3 +189,4 @@ cython_debug/
 
 # for all the data files
 data/
+/data
